@@ -48,14 +48,18 @@ int main(int argc, char **argv) {
                                 timersub(&p_end, &p_start, &p_time);
                                 printf("IO\t %d\t %g\n",num, SEC(p_time));
                         } else {
+				printf("CPU PROC %d INICIO\n", num);
+				fflush(stdout);
+
                                 gettimeofday(&p_start, NULL);
                                 for(i=0; i<cpu_ops; i++)
 {
-                                        x = (x << 4) - (x << 4);
+                                        x =  (x* 1000003)% 999983;
                                 }
                                 gettimeofday(&p_end, NULL);
                                 timersub(&p_end, &p_start, &p_time);
                                 printf("CPU\t %d\t %g\n",num, SEC(p_time));
+                                fflush(stdout);
                         }
                         exit(0); // todo filho termina aqui ...
                 }
